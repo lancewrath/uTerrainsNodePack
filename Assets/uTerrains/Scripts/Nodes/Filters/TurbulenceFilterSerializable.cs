@@ -18,8 +18,8 @@ public class TurbulenceFilterSerializable : FilterNodeSerializable
 
 
 
-    [SerializeField] private float frequency;
-    [SerializeField] private float power;
+    [SerializeField] private float frequency = 0.1f;
+    [SerializeField] private float power = 6;
     [SerializeField] private int seed;
 
     public override void OnEditorGUI(UltimateTerrain uTerrain)

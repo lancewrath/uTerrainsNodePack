@@ -36,10 +36,10 @@ public class TurbulenceFilter : FilterNode
     protected override double ExecuteFilter(double x, double y, double z, CallableNode flow, double inputValue)
     {
 
-        var xd = x + (distort.GetValue((x*frequency) + X0, (y * frequency) + Y0, (z * frequency) + Z0) * power);
-        var yd = y + (distort.GetValue((x * frequency) + X1, (y * frequency) + Y1, (z * frequency) + Z1) * power);
-        var zd = z + (distort.GetValue((x * frequency) + X2, (y * frequency) + Y2, (z * frequency) + Z2) * power);
-        return flow.Call(input, xd, yd, zd);
+        var xd = x + (distort.GetValue((x*frequency) + X0, 0, (z * frequency) + Z0) * power);
+        //var yd = y + (distort.GetValue((x * frequency) + X1, (y * frequency) + Y1, (z * frequency) + Z1) * power);
+        var zd = z + (distort.GetValue((x * frequency) + X2, 0, (z * frequency) + Z2) * power);
+        return flow.Call(input, xd, 0, zd);
 
     }
 
