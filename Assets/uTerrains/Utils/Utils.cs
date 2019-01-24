@@ -6,7 +6,7 @@ using LibNoise.Primitive;
 
 namespace UltimateTerrains.Utils
 {
-    internal static class Utils
+    internal static class uUtils
     {
 
         internal const double Sqrt3 = 1.7320508075688772935;
@@ -122,6 +122,19 @@ namespace UltimateTerrains.Utils
         internal static double InterpolateLinear(double a, double b, double position)
         {
             return ((1.0 - position) * a) + (position * b);
+        }
+
+        internal static double ValueNoise3D(int x, int y, int z, int seed)
+        {
+            return 1.0 - (ValueNoise3DInt(x, y, z, seed) / 1073741824.0);
+        }
+
+        internal static long ValueNoise3DInt(int x, int y, int z, int seed)
+        {
+            long n = (GeneratorNoiseX * x + GeneratorNoiseY * y + GeneratorNoiseZ * z +
+                      GeneratorSeed * seed) & 0x7fffffff;
+            n = (n >> 13) ^ n;
+            return (n * (n * n * 60493 + 19990303) + 1376312589) & 0x7fffffff;
         }
 
         internal static readonly double[] Randoms =
