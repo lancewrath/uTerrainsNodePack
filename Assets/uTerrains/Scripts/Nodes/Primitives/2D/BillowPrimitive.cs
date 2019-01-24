@@ -33,11 +33,11 @@ public class BillowPrimitive : Primitive2DNode
         z *= frequency;
         for (var i = 0; i < octaveCount; i++)
         {
-            var nx = Utils.MakeInt32Range(x);
-            var ny = Utils.MakeInt32Range(y);
-            var nz = Utils.MakeInt32Range(z);
+            var nx = uUtils.MakeInt32Range(x);
+            var ny = uUtils.MakeInt32Range(y);
+            var nz = uUtils.MakeInt32Range(z);
             var seed = (this.seed + i) & 0xffffffff;
-            var signal = Utils.GradientCoherentNoise3D(nx, ny, nz, seed, quality);
+            var signal = uUtils.GradientCoherentNoise3D(nx, 0, nz, seed, quality);
             signal = 2.0 * System.Math.Abs(signal) - 1.0;
             value += signal * amplitude;
             x *= lacunarity;

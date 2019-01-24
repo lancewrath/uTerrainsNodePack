@@ -34,18 +34,18 @@ public class ImprovedPerlin2DPrimitive : Primitive2DNode
         z *= frequency;
         for (var i = 0; i < octaveCount; i++)
         {
-            var nx = Utils.MakeInt32Range(x);
-            var ny = Utils.MakeInt32Range(y);
-            var nz = Utils.MakeInt32Range(z);
+            var nx = uUtils.MakeInt32Range(x);
+            var ny = uUtils.MakeInt32Range(y);
+            var nz = uUtils.MakeInt32Range(z);
             var seed = (this.seed + i) & 0xffffffff;
-            var signal = Utils.GradientCoherentNoise3D(nx, ny, nz, seed, quality);
+            var signal = uUtils.GradientCoherentNoise3D(nx, 0, nz, seed, quality);
             value += signal * amplitude;
             x *= lacunarity;
             y *= lacunarity;
             z *= lacunarity;
             amplitude *= persistence;
         }
-        return value*scale;
+        return value;// *scale;
     }
 
 
